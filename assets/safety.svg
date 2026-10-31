@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 272" width="800" height="272" role="img" aria-label="Safety guards: secret and oversized files are excluded before committing">
+<title>Safety guards</title>
+<style>text{font-family: 'SF Mono', Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace;}
+@keyframes gate{0%,100%{opacity:.55}50%{opacity:1}}.gate{animation:gate 2s ease-in-out infinite}
+@keyframes c0{0%,5.45%{opacity:0;transform:translateX(0)}7.45%{opacity:1;transform:translateX(0)}46.36%{opacity:1;transform:translateX(450px)}52.73%,90%{opacity:1;transform:translateX(450px)}96%,100%{opacity:0;transform:translateX(450px)}}
+.c0{opacity:0;animation:c0 11.0s infinite}
+@keyframes t0{0%,53.64%{opacity:0}55.64%,90%{opacity:1}96%,100%{opacity:0}}.t0{opacity:0;animation:t0 11.0s infinite}
+@keyframes c1{0%,9.09%{opacity:0;transform:translateX(0)}11.09%{opacity:1;transform:translateX(0)}36.36%{opacity:1;transform:translateX(196px)}37.36%{transform:translateX(188px)}38.36%,90%{transform:translateX(196px);opacity:1}96%,100%{opacity:0;transform:translateX(196px)}}
+.c1{opacity:0;animation:c1 11.0s infinite}
+@keyframes t1{0%,40.0%{opacity:0}42.0%,90%{opacity:1}96%,100%{opacity:0}}.t1{opacity:0;animation:t1 11.0s infinite}
+@keyframes c2{0%,12.73%{opacity:0;transform:translateX(0)}14.73%{opacity:1;transform:translateX(0)}40.0%{opacity:1;transform:translateX(196px)}41.0%{transform:translateX(188px)}42.0%,90%{transform:translateX(196px);opacity:1}96%,100%{opacity:0;transform:translateX(196px)}}
+.c2{opacity:0;animation:c2 11.0s infinite}
+@keyframes t2{0%,43.64%{opacity:0}45.64%,90%{opacity:1}96%,100%{opacity:0}}.t2{opacity:0;animation:t2 11.0s infinite}
+@media (prefers-reduced-motion: reduce){[class]{animation:none!important;opacity:1!important}}
+</style>
+<rect x="1" y="1" width="798" height="270" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+<g class="c0"><rect x="30" y="44" width="150" height="36" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/><text x="105" y="67" text-anchor="middle" font-size="14" fill="#e6edf3">src/app.py</text></g><text class="t0" x="650" y="67" font-size="14" fill="#3fb950">✔ own commit</text><g class="c1"><rect x="30" y="114" width="150" height="36" rx="8" fill="#161b22" stroke="#f85149" stroke-width="2"/><text x="105" y="137" text-anchor="middle" font-size="14" fill="#e6edf3">.env</text></g><text class="t1" x="418" y="137" font-size="13" fill="#f85149">✖ excluded: looks like a secret</text><g class="c2"><rect x="30" y="184" width="150" height="36" rx="8" fill="#161b22" stroke="#d29922" stroke-width="2"/><text x="105" y="207" text-anchor="middle" font-size="14" fill="#e6edf3">video.zip</text></g><text class="t2" x="418" y="207" font-size="13" fill="#f85149">✖ skipped: over 100 MB (GitHub rejects it)</text><rect class="gate" x="392" y="100" width="10" height="132" rx="4" fill="#f85149"/><text x="397" y="254" text-anchor="middle" font-size="12" fill="#8b949e">secret &amp; size guards</text><text x="105" y="26" text-anchor="middle" font-size="12" fill="#8b949e">your changes</text><text x="690" y="26" text-anchor="middle" font-size="12" fill="#8b949e">git history</text>
+</svg>
