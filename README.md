@@ -168,8 +168,8 @@ flowchart LR
 You need **Python 3.8+** and **Git**.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
-cd YOUR_REPO
+git clone https://github.com/mehedyk/Singulate.git
+cd Singulate
 ```
 
 That's it. There is nothing to `pip install`.
