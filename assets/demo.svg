@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 556" width="800" height="556" role="img" aria-label="Animated terminal demo of singulate.py">
+<title>singulate.py live demo</title>
+<style>
+text{font-family: 'SF Mono', Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace; font-size:14px; white-space:pre;}
+@keyframes l0{0%,2.11%{opacity:0}2.51%,95%{opacity:1}98.5%,100%{opacity:0}}.l0{opacity:0;animation:l0 19.0s infinite}
+@keyframes l1{0%,7.37%{opacity:0}7.7700000000000005%,95%{opacity:1}98.5%,100%{opacity:0}}.l1{opacity:0;animation:l1 19.0s infinite}
+@keyframes l3{0%,12.63%{opacity:0}13.030000000000001%,95%{opacity:1}98.5%,100%{opacity:0}}.l3{opacity:0;animation:l3 19.0s infinite}
+@keyframes l4{0%,14.74%{opacity:0}15.14%,95%{opacity:1}98.5%,100%{opacity:0}}.l4{opacity:0;animation:l4 19.0s infinite}
+@keyframes l5{0%,16.84%{opacity:0}17.24%,95%{opacity:1}98.5%,100%{opacity:0}}.l5{opacity:0;animation:l5 19.0s infinite}
+@keyframes l6{0%,18.95%{opacity:0}19.349999999999998%,95%{opacity:1}98.5%,100%{opacity:0}}.l6{opacity:0;animation:l6 19.0s infinite}
+@keyframes l7{0%,21.05%{opacity:0}21.45%,95%{opacity:1}98.5%,100%{opacity:0}}.l7{opacity:0;animation:l7 19.0s infinite}
+@keyframes l8{0%,27.37%{opacity:0}27.77%,95%{opacity:1}98.5%,100%{opacity:0}}.l8{opacity:0;animation:l8 19.0s infinite}
+@keyframes l10{0%,34.74%{opacity:0}35.14%,95%{opacity:1}98.5%,100%{opacity:0}}.l10{opacity:0;animation:l10 19.0s infinite}
+@keyframes l11{0%,41.05%{opacity:0}41.449999999999996%,95%{opacity:1}98.5%,100%{opacity:0}}.l11{opacity:0;animation:l11 19.0s infinite}
+@keyframes l12{0%,44.21%{opacity:0}44.61%,95%{opacity:1}98.5%,100%{opacity:0}}.l12{opacity:0;animation:l12 19.0s infinite}
+@keyframes l13{0%,47.37%{opacity:0}47.769999999999996%,95%{opacity:1}98.5%,100%{opacity:0}}.l13{opacity:0;animation:l13 19.0s infinite}
+@keyframes l14{0%,50.53%{opacity:0}50.93%,95%{opacity:1}98.5%,100%{opacity:0}}.l14{opacity:0;animation:l14 19.0s infinite}
+@keyframes l16{0%,57.37%{opacity:0}57.769999999999996%,95%{opacity:1}98.5%,100%{opacity:0}}.l16{opacity:0;animation:l16 19.0s infinite}
+@keyframes l17{0%,63.68%{opacity:0}64.08%,95%{opacity:1}98.5%,100%{opacity:0}}.l17{opacity:0;animation:l17 19.0s infinite}
+@keyframes l19{0%,69.47%{opacity:0}69.87%,95%{opacity:1}98.5%,100%{opacity:0}}.l19{opacity:0;animation:l19 19.0s infinite}
+@keyframes l20{0%,71.05%{opacity:0}71.45%,95%{opacity:1}98.5%,100%{opacity:0}}.l20{opacity:0;animation:l20 19.0s infinite}
+@keyframes l21{0%,72.63%{opacity:0}73.03%,95%{opacity:1}98.5%,100%{opacity:0}}.l21{opacity:0;animation:l21 19.0s infinite}
+@keyframes l22{0%,74.21%{opacity:0}74.61%,95%{opacity:1}98.5%,100%{opacity:0}}.l22{opacity:0;animation:l22 19.0s infinite}
+@media (prefers-reduced-motion: reduce){.ln{animation:none!important;opacity:1!important}}
+</style>
+<rect x="1" y="1" width="798" height="554" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+<rect x="1" y="1" width="798" height="38" rx="16" fill="#161b22"/><rect x="1" y="24" width="798" height="15" fill="#161b22"/>
+<circle cx="26" cy="20" r="5.5" fill="#ff5f56"/><circle cx="46" cy="20" r="5.5" fill="#ffbd2e"/><circle cx="66" cy="20" r="5.5" fill="#27c93f"/>
+<text x="400" y="25" text-anchor="middle" font-size="12" fill="#8b949e">bash — my-project (main)</text>
+<text class="ln l0" x="24" y="74" xml:space="preserve"><tspan fill="#3fb950">$ </tspan><tspan fill="#e6edf3">python singulate.py</tspan></text>
+<text class="ln l1" x="24" y="94" xml:space="preserve"><tspan fill="#e6edf3">Pull first? [y/N] </tspan><tspan fill="#3fb950">n</tspan></text>
+<text class="ln l3" x="24" y="134" xml:space="preserve"><tspan fill="#8b949e"> 1. </tspan><tspan fill="#d29922">~ </tspan><tspan fill="#e6edf3">updated  README.md</tspan></text>
+<text class="ln l4" x="24" y="154" xml:space="preserve"><tspan fill="#8b949e"> 2. </tspan><tspan fill="#3fb950">+ </tspan><tspan fill="#e6edf3">created  src/validate.ts</tspan></text>
+<text class="ln l5" x="24" y="174" xml:space="preserve"><tspan fill="#8b949e"> 3. </tspan><tspan fill="#f85149">- </tspan><tspan fill="#e6edf3">deleted  old_notes.txt</tspan></text>
+<text class="ln l6" x="24" y="194" xml:space="preserve"><tspan fill="#8b949e"> 4. </tspan><tspan fill="#39c5cf">&gt; </tspan><tspan fill="#e6edf3">renamed  utils.py -&gt; helpers.py</tspan></text>
+<text class="ln l7" x="24" y="214" xml:space="preserve"><tspan fill="#8b949e"> 5. </tspan><tspan fill="#3fb950">+ </tspan><tspan fill="#e6edf3">created  .env</tspan><tspan fill="#d29922">   (SENSITIVE?)</tspan></text>
+<text class="ln l8" x="24" y="234" xml:space="preserve"><tspan fill="#d29922">.env looks like a secret. [e]xclude / [i]nclude / [a]bort: </tspan><tspan fill="#3fb950">e</tspan></text>
+<text class="ln l10" x="24" y="274" xml:space="preserve"><tspan fill="#e6edf3">Commit these 4 file(s), one commit each? [Y]es/[n]o/skip: </tspan><tspan fill="#3fb950">y</tspan></text>
+<text class="ln l11" x="24" y="294" xml:space="preserve"><tspan fill="#3fb950">✔ </tspan><tspan fill="#e6edf3">updated README.md</tspan></text>
+<text class="ln l12" x="24" y="314" xml:space="preserve"><tspan fill="#3fb950">✔ </tspan><tspan fill="#e6edf3">created src/validate.ts</tspan></text>
+<text class="ln l13" x="24" y="334" xml:space="preserve"><tspan fill="#3fb950">✔ </tspan><tspan fill="#e6edf3">deleted old_notes.txt</tspan></text>
+<text class="ln l14" x="24" y="354" xml:space="preserve"><tspan fill="#3fb950">✔ </tspan><tspan fill="#e6edf3">renamed utils.py -&gt; helpers.py</tspan></text>
+<text class="ln l16" x="24" y="394" xml:space="preserve"><tspan fill="#e6edf3">Push?  [n] no  [y] current branch ('main')  [A] another: </tspan><tspan fill="#3fb950">y</tspan></text>
+<text class="ln l17" x="24" y="414" xml:space="preserve"><tspan fill="#3fb950">Pushed to origin/main</tspan></text>
+<text class="ln l19" x="24" y="454" xml:space="preserve"><tspan fill="#e6edf3">Summary</tspan></text>
+<text class="ln l20" x="24" y="474" xml:space="preserve"><tspan fill="#8b949e">  Committed: 4  (1 updated, 1 created, 1 deleted, 1 renamed)</tspan></text>
+<text class="ln l21" x="24" y="494" xml:space="preserve"><tspan fill="#8b949e">  Skipped:   1</tspan></text>
+<text class="ln l22" x="24" y="514" xml:space="preserve"><tspan fill="#8b949e">  Pushed to: origin/main</tspan></text>
+</svg>
