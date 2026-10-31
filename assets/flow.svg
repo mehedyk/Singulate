@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" width="800" height="380" role="img" aria-label="Flowchart: pull, scan, preview and guards, commit each file, push, summary">
+<title>How Singulate works</title>
+<style>
+text{font-family: 'SF Mono', Menlo, Consolas, 'Liberation Mono', 'DejaVu Sans Mono', monospace;}
+.ar{stroke-dasharray:7 6;animation:march .7s linear infinite}
+@keyframes march{to{stroke-dashoffset:-13}}
+.bx{animation:pulse 10.0s ease-in-out infinite}
+@keyframes pulse{0%,16%,100%{fill:#161b22;stroke-width:2}6%{fill:#21262d;stroke-width:4.5}}
+@media (prefers-reduced-motion: reduce){.ar,.bx{animation:none!important}}
+</style>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8b949e"/></marker></defs>
+<rect x="1" y="1" width="798" height="378" rx="16" fill="#0d1117" stroke="#30363d" stroke-width="2"/>
+<text x="400" y="30" text-anchor="middle" font-size="13" fill="#8b949e" letter-spacing="2">HOW SINGULATE WORKS</text>
+<path class="ar" d="M240 92 H291" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#ah)"/><path class="ar" d="M505 92 H556" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#ah)"/><path class="ar" d="M665 134 V182 H135 V226" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#ah)"/><path class="ar" d="M240 272 H291" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#ah)"/><path class="ar" d="M505 272 H556" fill="none" stroke="#8b949e" stroke-width="2.5" marker-end="url(#ah)"/>
+<g>
+<rect class="bx" style="animation-delay:0.0s" x="30" y="50" width="210" height="84" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+<circle cx="30" cy="50" r="13" fill="#3fb950"/><text x="30" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">1</text>
+<text x="135.0" y="88" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Pull?</text>
+<text x="135.0" y="112" text-anchor="middle" font-size="10.5" fill="#8b949e">ask y/n · git pull --ff-only</text></g><g>
+<rect class="bx" style="animation-delay:1.3s" x="295" y="50" width="210" height="84" rx="12" fill="#161b22" stroke="#39c5cf" stroke-width="2"/>
+<circle cx="295" cy="50" r="13" fill="#39c5cf"/><text x="295" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">2</text>
+<text x="400.0" y="88" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Scan changes</text>
+<text x="400.0" y="112" text-anchor="middle" font-size="10.5" fill="#8b949e">git status --porcelain -z -uall</text></g><g>
+<rect class="bx" style="animation-delay:2.6s" x="560" y="50" width="210" height="84" rx="12" fill="#161b22" stroke="#d29922" stroke-width="2"/>
+<circle cx="560" cy="50" r="13" fill="#d29922"/><text x="560" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">3</text>
+<text x="665.0" y="88" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Preview + guards</text>
+<text x="665.0" y="112" text-anchor="middle" font-size="10.5" fill="#8b949e">secrets · &gt;100 MB · skip</text></g><g>
+<rect class="bx" style="animation-delay:3.9000000000000004s" x="30" y="230" width="210" height="84" rx="12" fill="#161b22" stroke="#a371f7" stroke-width="2"/>
+<circle cx="30" cy="230" r="13" fill="#a371f7"/><text x="30" y="235" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">4</text>
+<text x="135.0" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Commit each file</text>
+<text x="135.0" y="292" text-anchor="middle" font-size="10.5" fill="#8b949e">git add -- f  →  git commit -- f</text></g><g>
+<rect class="bx" style="animation-delay:5.2s" x="295" y="230" width="210" height="84" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+<circle cx="295" cy="230" r="13" fill="#3fb950"/><text x="295" y="235" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">5</text>
+<text x="400.0" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Push?</text>
+<text x="400.0" y="292" text-anchor="middle" font-size="10.5" fill="#8b949e">n · y current · A other branch</text></g><g>
+<rect class="bx" style="animation-delay:6.5s" x="560" y="230" width="210" height="84" rx="12" fill="#161b22" stroke="#39c5cf" stroke-width="2"/>
+<circle cx="560" cy="230" r="13" fill="#39c5cf"/><text x="560" y="235" text-anchor="middle" font-size="14" font-weight="700" fill="#0d1117">6</text>
+<text x="665.0" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#e6edf3">Summary</text>
+<text x="665.0" y="292" text-anchor="middle" font-size="10.5" fill="#8b949e">counts · failures · pushed to</text></g>
+<text x="135" y="346" text-anchor="middle" font-size="12" fill="#a371f7">repeats once per file</text>
+<text x="400" y="346" text-anchor="middle" font-size="12" fill="#3fb950">force-push is never used</text>
+<text x="665" y="346" text-anchor="middle" font-size="12" fill="#39c5cf">Ctrl+C always safe</text>
+</svg>
