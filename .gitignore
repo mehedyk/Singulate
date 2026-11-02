@@ -8,3 +8,10 @@ venv/
 .idea/
 .vscode/
 .DS_Store
+
+# build output
+dist/
+build/
+.pyi-build/
+*.spec
+*.egg-info/
