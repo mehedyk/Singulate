@@ -1,0 +1,55 @@
+name: Build and release binaries
+
+# Push a tag like v1.0.0 and this builds Windows, macOS and Linux executables
+# and attaches them to a GitHub Release. You can also run it by hand from the Actions tab.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: windows-latest, suffix: windows }
+          - { os: macos-latest,   suffix: macos }
+          - { os: ubuntu-latest,  suffix: linux }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build executables
+        run: python build.py --suffix ${{ matrix.suffix }}
+      - name: Smoke test
+        shell: bash
+        run: |
+          ls -l dist
+          for f in dist/singulate-pro-*; do "$f" --version; done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: binaries-${{ matrix.suffix }}
+          path: dist/*
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: binaries-*
+          merge-multiple: true
+          path: dist
+      - name: Checksums
+        run: cd dist && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" dist/* --repo "${{ github.repository }}" --title "Singulate ${{ github.ref_name }}" --generate-notes
