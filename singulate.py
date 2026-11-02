@@ -24,6 +24,7 @@ Only the Python standard library is used.
 import argparse
 import fnmatch
 import os
+import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
@@ -173,6 +174,71 @@ def is_sensitive(path: str) -> bool:
     return any(fnmatch.fnmatch(name, p) for p in SENSITIVE_PATTERNS)
 
 
+TOOL_NAME_RX = re.compile(
+    r"^(singulate|singulate[_-]pro|simple[_-]push|autocommit)(-(windows|macos|linux))?(\.py|\.exe)?$", re.I)
+
+
+def frozen() -> bool:
+    """True when running as a stand-alone executable built with PyInstaller."""
+    return bool(getattr(sys, "frozen", False))
+
+
+def self_path() -> str:
+    return os.path.realpath(sys.executable if frozen() else __file__)
+
+
+def tool_cmd(script: str) -> str:
+    """How the user should re-run us in a hint message."""
+    return os.path.basename(sys.executable) if frozen() else f"python {script}"
+
+
+def pause_if_double_clicked() -> None:
+    """A Windows .exe opened by double-click closes instantly; keep the window open to read the result."""
+    if not (frozen() and os.name == "nt"):
+        return
+    try:
+        import ctypes
+        procs = (ctypes.c_uint * 8)()
+        # one-file builds have a bootloader + the real process; 2 or fewer means no shell started us
+        if ctypes.windll.kernel32.GetConsoleProcessList(procs, 8) <= 2:
+            input("\nPress Enter to close this window...")
+    except Exception:
+        pass
+
+
+def run_as_script(main_fn) -> None:
+    try:
+        code = main_fn()
+    except SystemExit as e:
+        code = e.code
+    pause_if_double_clicked()
+    sys.exit(code)
+
+
+def own_tool_paths_in(root: str) -> set:
+    """Repo-relative paths of this tool's own file(s) and its siblings, so we never commit ourselves."""
+    me = self_path()
+    here = os.path.dirname(me)
+    try:
+        rel = os.path.relpath(here, os.path.realpath(root))
+    except ValueError:                      # different drive on Windows
+        return set()
+    if rel == ".." or rel.startswith(".." + os.sep):
+        return set()                        # the tool lives outside this repository
+    try:
+        names = {n for n in os.listdir(here) if TOOL_NAME_RX.match(n)}
+    except OSError:
+        names = set()
+    names.add(os.path.basename(me))
+    return {n if rel == "." else f"{rel}/{n}".replace(os.sep, "/") for n in names}
+
+INCLUDE_SELF = False  # set from --include-self
+
+
+def own_tool_paths() -> set:
+    return own_tool_paths_in(ROOT)
+
+
 def get_changes() -> List[Change]:
     r = git("status", "--porcelain=v1", "-z", "-uall")
     if r.returncode != 0:
@@ -182,6 +248,8 @@ def get_changes() -> List[Change]:
     parts = r.stdout.split("\0")
     changes: List[Change] = []
     conflicts: List[str] = []
+    own = set() if INCLUDE_SELF else own_tool_paths()
+    skipped_self: List[str] = []
     i = 0
     while i < len(parts):
         entry = parts[i]
@@ -195,6 +263,9 @@ def get_changes() -> List[Change]:
             i += 1
         if xy in UNMERGED:
             conflicts.append(path)
+            continue
+        if xy == "??" and path in own:       # never commit the Singulate tool itself
+            skipped_self.append(path)
             continue
 
         if xy == "??":
@@ -218,6 +289,9 @@ def get_changes() -> List[Change]:
                 c.size = 0
         changes.append(c)
 
+    if skipped_self:
+        dim("Skipping Singulate's own file(s): " + ", ".join(sorted(skipped_self))
+            + "  (use --include-self to commit them)")
     if conflicts:
         err("Merge conflicts found - resolve these first, then run again:")
         for p in conflicts:
@@ -441,13 +515,16 @@ def parse_args():
                    help="no questions: secrets & >100MB files are auto-skipped, no pull/push unless flagged")
     p.add_argument("--dry-run", action="store_true", help="show what would happen, change nothing")
     p.add_argument("--prefix", default="", help='message prefix, e.g. "feat:"')
+    p.add_argument("--include-self", action="store_true",
+                   help="also commit Singulate's own script files (skipped by default)")
     return p.parse_args()
 
 
 def main() -> int:
-    global ROOT
+    global ROOT, INCLUDE_SELF
     args = parse_args()
     ROOT = find_root()
+    INCLUDE_SELF = args.include_self
     done, failed = [], []
     skipped = 0
     pushed = None
@@ -482,4 +559,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    run_as_script(main)
