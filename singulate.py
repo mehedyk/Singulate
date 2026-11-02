@@ -215,8 +215,19 @@ def run_as_script(main_fn) -> None:
     sys.exit(code)
 
 
+def is_singulate_source_repo(root: str) -> bool:
+    """True inside the Singulate project itself, where the scripts are meant to be committed."""
+    try:
+        with open(os.path.join(root, "pyproject.toml"), encoding="utf-8") as f:
+            return bool(re.search(r'^name\s*=\s*"singulate"\s*$', f.read(), re.M))
+    except OSError:
+        return False
+
+
 def own_tool_paths_in(root: str) -> set:
     """Repo-relative paths of this tool's own file(s) and its siblings, so we never commit ourselves."""
+    if is_singulate_source_repo(root):
+        return set()                        # this IS the Singulate repo: commit everything
     me = self_path()
     here = os.path.dirname(me)
     try:

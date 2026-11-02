@@ -113,12 +113,13 @@ class TestBasics(Base):
         write(self.a, "keep.txt", "changed\n")                 # updated
         write(self.a, "new file with space.txt")               # created, space in name
         write(self.a, "dir/sub/deep.py", "print(1)\n")         # created in new folder
-        write(self.a, "star*.txt")                              # '*' in a file name
+        star = "star_x.txt" if WIN else "star*.txt"              # '*' is illegal in Windows file names
+        write(self.a, star)
         os.remove(os.path.join(self.a, "base.txt"))            # deleted
         self.assertEqual(self.run_main("--no-push", "-y"), 0, self.out)
         msgs = self.log()
         for want in ("updated keep.txt", "created new file with space.txt", "created dir/sub/deep.py",
-                     "created star*.txt", "deleted base.txt"):
+                     f"created {star}", "deleted base.txt"):
             self.assertIn(want, msgs)
         # each commit touches exactly its own file
         for rev in sh(self.a, "git", "rev-list", "-5", "HEAD").splitlines():
@@ -514,7 +515,7 @@ class TestLoginLogic(Base):
         self.assertNotEqual(sh(self.a, "git", "rev-parse", "HEAD"), sh(self.a, "git", "rev-parse", "origin/main"))
 
     def test_store_credential_roundtrip_with_real_helper(self):
-        store = os.path.join(self.tmp, "creds")
+        store = os.path.join(self.tmp, "creds").replace("\\", "/")
         sh(self.a, "git", "config", "--local", "credential.helper", f"store --file={store}")
         rm = sp.parse_remote("origin", "https://example.org/o/r.git")
         with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(sp, "yes_no", return_value=True):

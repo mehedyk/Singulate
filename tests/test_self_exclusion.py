@@ -103,6 +103,21 @@ class SelfExclusion(unittest.TestCase):
                 self.run_it(script, rel, "--include-self")
                 self.assertIn(script, self.committed_files())
 
+    def test_inside_the_singulate_source_repo_nothing_is_skipped(self):
+        # in the Singulate project itself the scripts ARE the project: the tools must commit them
+        self.write("pyproject.toml", '[project]\nname = "singulate"\nversion = "1.0.0"\n')
+        for script in SCRIPTS:
+            with self.subTest(script=script):
+                self.install("singulate.py")
+                self.install("singulate_pro.py")
+                self.install("simple_push.py")
+                self.write("pyproject.toml", '[project]\nname = "singulate"\nversion = "1.0.0"\n')
+                self.run_it(script, script)
+                files = self.committed_files()
+                for s in SCRIPTS:
+                    self.assertIn(s, files, f"{s} was skipped when running {script}")
+                self.setUp()
+
     def test_only_the_tool_changed_means_nothing_to_commit(self):
         for script in SCRIPTS:
             with self.subTest(script=script):

@@ -30,9 +30,20 @@ def self_path():
     return os.path.realpath(sys.executable if frozen() else __file__)
 
 
+def is_singulate_source_repo(root: str) -> bool:
+    """True inside the Singulate project itself, where the scripts are meant to be committed."""
+    try:
+        with open(os.path.join(root, "pyproject.toml"), encoding="utf-8") as f:
+            return bool(re.search(r'^name\s*=\s*"singulate"\s*$', f.read(), re.M))
+    except OSError:
+        return False
+
+
 def own_files():
     """This tool's own (untracked) files inside the repo - we never commit ourselves."""
     top = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True).stdout.strip()
+    if is_singulate_source_repo(top):
+        return []                           # this IS the Singulate repo: commit everything
     me = self_path()
     here = os.path.dirname(me)
     try:
