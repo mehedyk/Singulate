@@ -1,11 +1,13 @@
 # Contributing to Singulate
 
-Thanks for helping! This project is maintained by [mehedyk](https://mehedy.netlify.app).
+Thanks for helping! This project lives at https://github.com/mehedyk/Singulate and is maintained by [mehedyk](https://mehedy.netlify.app).
 
 ## Ground rules
 - Keep it **dependency-free** (Python standard library only).
 - Keep it **safe by default**: no force-push, no destructive git commands, secrets are excluded unless the user explicitly says otherwise.
 - Test in a throwaway repo (and use `--dry-run`) before opening a PR.
+- For `singulate_pro.py`, add a test in `tests/` (they build real throwaway repos, no network) and run:
+  `python -m unittest discover -s tests -v`
 
 ## How to contribute
 1. Fork the repo and create a branch: `git checkout -b my-change`
@@ -16,3 +18,7 @@ Thanks for helping! This project is maintained by [mehedyk](https://mehedy.netli
 ## License of contributions
 By submitting a contribution you agree that it is licensed under the
 GNU Affero General Public License v3.0, the same as the project.
+
+## Building and releasing
+- `python build.py` builds executables for your OS into `dist/` (PyInstaller).
+- Pushing a tag like `v1.0.0` runs `.github/workflows/release.yml`, which builds Windows, macOS and Linux apps and publishes a GitHub Release.
